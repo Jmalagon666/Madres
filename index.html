@@ -1,1 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>¡¡Feliz Día, Mamá Extraordinaria!! 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --rosa:       #d4668a;
+      --rosa-claro: #f5c6d8;
+      --rosa-oscuro:#9b3a5c;
+      --durazno:    #f0956a;
+      --dorado:     #c8a45a;
+      --verde:      #5a8a62;
+      --verde-claro:#8fba8f;
+      --crema:      #fef8f2;
+      --blanco:     #ffffff;
+      --texto:      #3d2535;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--crema);
+      color: var(--texto);
+      overflow-x: hidden;
+    }
+
+    /* ── PÉTALOS ── */
+    #petals {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 0; overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -50px;
+      border-radius: 80% 0 80% 0;
+      opacity: 0;
+      animation: caer linear infinite;
+    }
+    @keyframes caer {
+      0%   { transform: translateY(0) rotate(0deg) translateX(0);   opacity:0; }
+      8%   { opacity: .7; }
+      90%  { opacity: .5; }
+      100% { transform: translateY(108vh) rotate(400deg) translateX(50px); opacity:0; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+      background:
+        radial-gradient(ellipse at 15% 60%, rgba(212,102,138,.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 20%, rgba(200,164,90,.08)  0%, transparent 50%),
+        radial-gradient(ellipse at 55% 85%, rgba(90,138,98,.07)   0%, transparent 45%),
+        var(--crema);
+    }
+    .hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background-image: radial-gradient(circle, rgba(212,102,138,.05) 1px, transparent 0);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+
+    /* ramas decorativas */
+    .rama { position:absolute; opacity:.18; }
+    .rama-tl { top:0; left:0; transform: rotate(0deg); }
+    .rama-tr { top:0; right:0; transform: scaleX(-1); }
+    .rama-bl { bottom:0; left:0; transform: scaleY(-1); }
+    .rama-br { bottom:0; right:0; transform: scale(-1,-1); }
+
+    .badge {
+      display:inline-block;
+      font-family:'Nunito', sans-serif;
+      font-weight:600; font-size:.72rem;
+      letter-spacing:.38em; text-transform:uppercase;
+      color: var(--dorado);
+      border: 1px solid var(--rosa-claro);
+      border-radius:50px;
+      padding: 6px 22px;
+      margin-bottom: 28px;
+      animation: subirFade 1s ease both .1s;
+    }
+
+    .hero h1 {
+      font-family:'Playfair Display', serif;
+      font-weight:400;
+      font-size: clamp(2.2rem, 7vw, 5rem);
+      color: var(--rosa-oscuro);
+      line-height:1.12;
+      animation: subirFade 1s ease both .3s;
+    }
+    .hero h1 em {
+      display:block;
+      font-style:italic;
+      font-size: clamp(3rem, 9vw, 6.5rem);
+      color: var(--rosa);
+      line-height:1;
+    }
+
+    .sep {
+      display:flex; align-items:center; gap:14px;
+      width: min(420px, 80%);
+      margin: 34px auto;
+      animation: subirFade 1s ease both .5s;
+    }
+    .sep-line { flex:1; height:1px; background: linear-gradient(to right, transparent, var(--rosa-claro), transparent); }
+
+    .hero-sub {
+      font-family:'Playfair Display', serif;
+      font-style:italic;
+      font-size: clamp(1rem, 2.4vw, 1.3rem);
+      color: var(--rosa-oscuro);
+      max-width: 520px;
+      line-height:1.8;
+      opacity:.85;
+      animation: subirFade 1s ease both .7s;
+    }
+
+    .scroll-hint {
+      margin-top:48px;
+      font-size:.75rem; letter-spacing:.2em;
+      text-transform:uppercase; color: var(--dorado);
+      opacity:.7;
+      animation: subirFade 1s ease both 1.1s, pulsar 2s ease-in-out infinite 1.5s;
+    }
+    @keyframes pulsar { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+    @keyframes subirFade {
+      from { opacity:0; transform:translateY(28px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── TARJETAS DE MENSAJES ── */
+    .section-title {
+      text-align:center;
+      padding: 72px 24px 12px;
+      position: relative; z-index:1;
+    }
+    .section-title h2 {
+      font-family:'Cinzel Decorative', serif;
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      color: var(--rosa-oscuro);
+      letter-spacing:.04em;
+    }
+    .section-title p {
+      font-family:'Playfair Display', serif;
+      font-style:italic;
+      margin-top:10px;
+      color: var(--rosa);
+      font-size:1.1rem;
+    }
+
+    .cards-grid {
+      position: relative; z-index:1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 28px;
+      max-width: 1100px;
+      margin: 40px auto 0;
+      padding: 0 28px 80px;
+    }
+
+    .card {
+      background: var(--blanco);
+      border-radius: 20px;
+      padding: 40px 34px 36px;
+      box-shadow:
+        0 2px 6px rgba(155,58,92,.05),
+        0 10px 36px rgba(155,58,92,.09);
+      position: relative; overflow: hidden;
+      opacity:0; transform: translateY(32px);
+      transition: opacity .7s ease, transform .7s ease, box-shadow .3s ease;
+    }
+    .card.visible {
+      opacity:1; transform:translateY(0);
+    }
+    .card:hover {
+      box-shadow: 0 16px 48px rgba(155,58,92,.16);
+      transform: translateY(-4px);
+    }
+
+    /* línea de color superior por tarjeta */
+    .card::before {
+      content:'';
+      position:absolute; top:0; left:0; right:0;
+      height:5px;
+      border-radius:20px 20px 0 0;
+    }
+    .card:nth-child(1)::before { background: linear-gradient(to right, #d4668a, #f0956a); }
+    .card:nth-child(2)::before { background: linear-gradient(to right, #9b3a5c, #d4668a); }
+    .card:nth-child(3)::before { background: linear-gradient(to right, #c8a45a, #e8c47a); }
+    .card:nth-child(4)::before { background: linear-gradient(to right, #5a8a62, #8fba8f); }
+    .card:nth-child(5)::before { background: linear-gradient(to right, #d4668a, #9b3a5c); }
+    .card:nth-child(6)::before { background: linear-gradient(to right, #f0956a, #c8a45a); }
+
+    .card-icon {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      display:flex; align-items:center; justify-content:center;
+      margin-bottom: 20px;
+    }
+    .card:nth-child(1) .card-icon { background:#fdeef4; }
+    .card:nth-child(2) .card-icon { background:#f8e8ee; }
+    .card:nth-child(3) .card-icon { background:#fdf4e3; }
+    .card:nth-child(4) .card-icon { background:#eaf4eb; }
+    .card:nth-child(5) .card-icon { background:#fdeef4; }
+    .card:nth-child(6) .card-icon { background:#fef2ec; }
+
+    .card-icon svg { width:32px; height:32px; }
+
+    .card h3 {
+      font-family:'Playfair Display', serif;
+      font-size:1.18rem;
+      font-weight:700;
+      color: var(--rosa-oscuro);
+      margin-bottom:12px;
+    }
+    .card p {
+      font-size:.97rem;
+      line-height:1.85;
+      color: #5a3d48;
+    }
+
+    .card-footer {
+      margin-top:22px;
+      padding-top:16px;
+      border-top:1px solid #f5e6eb;
+      font-family:'Playfair Display', serif;
+      font-style:italic;
+      font-size:.88rem;
+      color: var(--rosa);
+    }
+
+    /* ── BANNER CENTRAL ── */
+    .banner {
+      position: relative; z-index:1;
+      background: linear-gradient(135deg, var(--rosa-oscuro) 0%, var(--rosa) 60%, var(--durazno) 100%);
+      padding: 80px 32px;
+      text-align:center;
+      overflow:hidden;
+    }
+    .banner::before {
+      content:'';
+      position:absolute; inset:0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 0);
+      background-size:30px 30px;
+    }
+    .banner h2 {
+      font-family:'Playfair Display', serif;
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      color:#fff;
+      line-height:1.2;
+      margin-bottom:20px;
+      position:relative;
+    }
+    .banner p {
+      font-family:'Playfair Display', serif;
+      font-style:italic;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: rgba(255,255,255,.88);
+      max-width:600px;
+      margin:0 auto 36px;
+      line-height:1.8;
+      position:relative;
+    }
+    .banner-badge {
+      display:inline-block;
+      background: rgba(255,255,255,.15);
+      border:1px solid rgba(255,255,255,.3);
+      color:#fff;
+      font-family:'Nunito',sans-serif;
+      font-weight:600; font-size:.78rem;
+      letter-spacing:.3em; text-transform:uppercase;
+      padding:8px 28px; border-radius:50px;
+      position:relative;
+    }
+
+    /* ── FRASES INSPIRADORAS ── */
+    .frases {
+      position:relative; z-index:1;
+      padding: 80px 28px;
+      max-width:900px;
+      margin:0 auto;
+    }
+    .frase-item {
+      display:flex; gap:24px; align-items:flex-start;
+      margin-bottom:44px;
+      opacity:0; transform:translateX(-24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .frase-item.visible { opacity:1; transform:translateX(0); }
+    .frase-item:nth-child(even) {
+      flex-direction:row-reverse;
+      transform:translateX(24px);
+    }
+    .frase-item:nth-child(even).visible { transform:translateX(0); }
+
+    .frase-num {
+      flex-shrink:0;
+      width:52px; height:52px;
+      border-radius:50%;
+      background: linear-gradient(135deg, var(--rosa), var(--rosa-oscuro));
+      color:#fff;
+      font-family:'Playfair Display', serif;
+      font-size:1.3rem; font-style:italic;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 0 4px 16px rgba(155,58,92,.25);
+    }
+    .frase-text {
+      flex:1;
+      background:#fff;
+      border-radius:16px;
+      padding:28px 30px;
+      box-shadow: 0 4px 20px rgba(155,58,92,.07);
+      border-left: 4px solid var(--rosa-claro);
+    }
+    .frase-item:nth-child(even) .frase-text {
+      border-left:none;
+      border-right:4px solid var(--rosa-claro);
+    }
+    .frase-text p {
+      font-family:'Playfair Display', serif;
+      font-style:italic;
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
+      line-height:1.8;
+      color: var(--texto);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position:relative; z-index:1;
+      text-align:center;
+      padding: 56px 24px 40px;
+      background: linear-gradient(to bottom, transparent, rgba(212,102,138,.06));
+    }
+
+    /* rosa SVG pequeña decorativa */
+    .mini-rosa { display:inline-block; }
+
+    footer .firma {
+      font-family:'Playfair Display', serif;
+      font-style:italic;
+      font-size:1.05rem;
+      color: var(--rosa);
+      margin-top:20px;
+    }
+    footer .anio {
+      font-size:.78rem;
+      letter-spacing:.25em;
+      color: var(--dorado);
+      margin-top:8px;
+      text-transform:uppercase;
+    }
+
+    /* ── CONFETI corazones ── */
+    .corazon-fly {
+      position:fixed; pointer-events:none;
+      font-size:1.4rem;
+      animation: volar 1.4s ease forwards;
+      z-index:999;
+    }
+    @keyframes volar {
+      0%   { transform:translateY(0) scale(1); opacity:1; }
+      100% { transform:translateY(-180px) scale(.3) rotate(25deg); opacity:0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Pétalos -->
+<div id="petals"></div>
+
+<!-- Ramas esquinas -->
+<svg class="rama rama-tl" width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 210 Q60 140 120 80 Q160 40 200 10" stroke="#d4668a" stroke-width="2" fill="none"/>
+  <path d="M10 210 Q80 160 130 100" stroke="#5a8a62" stroke-width="1.5" fill="none"/>
+  <ellipse cx="128" cy="82" rx="14" ry="8" fill="#5a8a62" transform="rotate(-40 128 82)"/>
+  <ellipse cx="160" cy="48" rx="12" ry="7" fill="#8fba8f" transform="rotate(-55 160 48)"/>
+  <circle cx="120" cy="80" r="14" fill="#f5c6d8"/>
+  <circle cx="120" cy="80" r="7"  fill="#d4668a"/>
+  <circle cx="192" cy="16" r="10" fill="#f5c6d8"/>
+  <circle cx="192" cy="16" r="5"  fill="#c8a45a"/>
+</svg>
+<svg class="rama rama-tr" width="220" height="220" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 210 Q60 140 120 80 Q160 40 200 10" stroke="#d4668a" stroke-width="2" fill="none"/>
+  <path d="M10 210 Q80 160 130 100" stroke="#5a8a62" stroke-width="1.5" fill="none"/>
+  <ellipse cx="128" cy="82" rx="14" ry="8" fill="#5a8a62" transform="rotate(-40 128 82)"/>
+  <ellipse cx="160" cy="48" rx="12" ry="7" fill="#8fba8f" transform="rotate(-55 160 48)"/>
+  <circle cx="120" cy="80" r="14" fill="#f5c6d8"/>
+  <circle cx="120" cy="80" r="7"  fill="#d4668a"/>
+  <circle cx="192" cy="16" r="10" fill="#f5c6d8"/>
+  <circle cx="192" cy="16" r="5"  fill="#c8a45a"/>
+</svg>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <span class="badge">✦ Día de la Madre · 2026 ✦</span>
+
+  <h1>
+    ¡Feliz Día,
+    <em>Mamá!</em>
+  </h1>
+
+  <div class="sep">
+    <div class="sep-line"></div>
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <path d="M11 3C11 3 7 7 4 10C1 13 3 18 7 18C9 18 11 16 11 16C11 16 13 18 15 18C19 18 21 13 18 10C15 7 11 3 11 3Z" fill="#d4668a"/>
+    </svg>
+    <div class="sep-line"></div>
+  </div>
+
+  <p class="hero-sub">
+    Hoy celebramos a las mujeres más valientes, generosas<br>
+    y llenas de amor que conozco. ¡A todas las mamás<br>
+    extraordinarias, este día es para ustedes!
+  </p>
+
+  <p class="scroll-hint">↓ &nbsp; Un mensaje especial las espera &nbsp; ↓</p>
+</section>
+
+<!-- ══════════ TARJETAS ══════════ -->
+<div class="section-title">
+  <h2>✦ Para cada una de ustedes ✦</h2>
+  <p>Porque ser mamá es el superpoder más grande del mundo</p>
+</div>
+
+<div class="cards-grid" id="cardsGrid">
+
+  <div class="card">
+    <div class="card-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 5C16 5 10 11 6 15C2 19 5 26 10 26C13 26 16 23 16 23C16 23 19 26 22 26C27 26 30 19 26 15C22 11 16 5 16 5Z" fill="#d4668a"/>
+      </svg>
+    </div>
+    <h3>¡Eres increíble!</h3>
+    <p>
+      Cada día demuestras que se puede con todo: con el trabajo,
+      con la familia, con una sonrisa que ilumina cualquier lugar.
+      Hoy quiero que sepas que tu esfuerzo es admirable
+      y que me inspiras con tu ejemplo cada día.
+    </p>
+    <div class="card-footer">Con todo mi cariño 🌸</div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="16" cy="10" r="6" fill="#9b3a5c"/>
+        <path d="M6 28C6 22 10 18 16 18C22 18 26 22 26 28" stroke="#9b3a5c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M20 6C22 4 26 5 26 9C26 12 22 14 20 14" stroke="#d4668a" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+    <h3>Supermamá en acción</h3>
+    <p>
+      Malabarista de horarios, experta en abrazos que curan,
+      chef de emergencias y jefa de alegrías. Lo haces todo
+      con una gracia que solo las mamás tienen. ¡Celebramos
+      cada uno de tus superpoderes hoy y siempre!
+    </p>
+    <div class="card-footer">¡Que viva tu magia! ✨</div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 4L18.5 11H26L20 15.5L22.5 22.5L16 18L9.5 22.5L12 15.5L6 11H13.5L16 4Z" fill="#c8a45a"/>
+      </svg>
+    </div>
+    <h3>Tu luz nos guía</h3>
+    <p>
+      Hay personas que con solo estar presentes hacen que
+      todo sea mejor. Tú eres una de ellas. Tu alegría,
+      tu dedicación y tu corazón generoso hacen del
+      mundo un lugar más cálido y especial.
+    </p>
+    <div class="card-footer">¡Brillas con fuerza! ⭐</div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 26C8 18 12 12 16 8C20 12 24 18 24 26" stroke="#5a8a62" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <ellipse cx="11" cy="16" rx="5" ry="3" fill="#8fba8f" transform="rotate(-30 11 16)"/>
+        <ellipse cx="21" cy="16" rx="5" ry="3" fill="#5a8a62" transform="rotate(30 21 16)"/>
+        <circle cx="16" cy="7" r="3" fill="#8fba8f"/>
+      </svg>
+    </div>
+    <h3>Raíces y alas</h3>
+    <p>
+      Como el árbol que da sombra y frutos, tú le das
+      a tu familia raíces firmes para crecer y alas
+      para soñar sin límites. Qué privilegio compartir
+      el camino contigo. ¡Feliz día, mamá hermosa!
+    </p>
+    <div class="card-footer">Con admiraciòn infinita 🌿</div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 16C5 10 10 5 16 5C22 5 27 10 27 16C27 22 22 27 16 27C10 27 5 22 5 16Z" stroke="#d4668a" stroke-width="2" fill="none"/>
+        <path d="M11 16C11 13 13 11 16 11C19 11 21 13 21 16" stroke="#d4668a" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <circle cx="16" cy="19" r="3" fill="#d4668a"/>
+      </svg>
+    </div>
+    <h3>Campeona del amor</h3>
+    <p>
+      Nadie ama tan profundo, tan desinteresado y tan
+      constante como una mamá. Eres campeona en el
+      deporte más importante de todos: criar con amor.
+      ¡Hoy toda la cancha es tuya para celebrarlo!
+    </p>
+    <div class="card-footer">¡Tú eres la MVP! 🏆</div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 6C16 6 8 10 8 18C8 23 11.5 27 16 27C20.5 27 24 23 24 18C24 10 16 6 16 6Z" fill="#f0956a" opacity=".9"/>
+        <path d="M16 10C16 10 12 14 12 18C12 21 13.8 24 16 24" stroke="#fff" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    <h3>Llama que no se apaga</h3>
+    <p>
+      Como una llama que calienta sin quemar, tú iluminas
+      la vida de quienes te rodean. Tu energía, tu risa
+      y tu fortaleza son el motor de tu familia y la
+      chispa que alegra cada día. ¡Feliz día!
+    </p>
+    <div class="card-footer">¡Que siempre brilles! 🔥</div>
+  </div>
+
+</div>
+
+<!-- ══════════ BANNER ══════════ -->
+<div class="banner">
+  <h2>¡Hoy las celebro a todas! 🎉</h2>
+  <p>
+    Porque detrás de cada sonrisa, cada logro y cada día
+    hay una mamá que lo dio todo. Gracias por ser quienes son,
+    dentro y fuera de casa. ¡Las quiero muchísimo!
+  </p>
+  <span class="banner-badge">✦ Feliz Día de la Madre 2026 ✦</span>
+</div>
+
+<!-- ══════════ FRASES ══════════ -->
+<div class="frases" id="frases">
+
+  <div class="frase-item">
+    <div class="frase-num">1</div>
+    <div class="frase-text">
+      <p>"Ser mamá no te hace menos profesional. Te hace más valiente,
+      más empática y más resiliente. ¡Y eso se nota en todo lo que haces!"</p>
+    </div>
+  </div>
+
+  <div class="frase-item">
+    <div class="frase-num">2</div>
+    <div class="frase-text">
+      <p>"Cada sonrisa que le das a tu hijo es una lección de amor
+      que él llevará para siempre. Eres su primer gran maestro."</p>
+    </div>
+  </div>
+
+  <div class="frase-item">
+    <div class="frase-num">3</div>
+    <div class="frase-text">
+      <p>"La maternidad no resta, multiplica: multiplica el amor,
+      la fuerza, la paciencia y las ganas de comerte el mundo."</p>
+    </div>
+  </div>
+
+  <div class="frase-item">
+    <div class="frase-num">4</div>
+    <div class="frase-text">
+      <p>"Hoy no hay pendientes, no hay prisa. Hoy solo
+      importa que sepas lo especial que eres para quienes te rodean."</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <!-- Rosa SVG decorativa -->
+  <svg width="60" height="80" viewBox="-30 -70 60 100" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,28 C-3,10 2,-10 0,-18" stroke="#5a8a62" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M-1,10 Q-18,2 -14,-10 Q-5,4 -1,10Z" fill="#8fba8f"/>
+    <path d="M1,16 Q18,8 15,-6 Q5,10 1,16Z" fill="#8fba8f" opacity=".8"/>
+    <ellipse cx="0" cy="-38" rx="11" ry="20" fill="#d4668a" opacity=".82" transform="rotate(0 0 -18)"/>
+    <ellipse cx="0" cy="-38" rx="11" ry="20" fill="#c25070" opacity=".78" transform="rotate(45 0 -18)"/>
+    <ellipse cx="0" cy="-38" rx="11" ry="20" fill="#d4668a" opacity=".82" transform="rotate(90 0 -18)"/>
+    <ellipse cx="0" cy="-38" rx="11" ry="20" fill="#c25070" opacity=".78" transform="rotate(135 0 -18)"/>
+    <ellipse cx="0" cy="-38" rx="11" ry="20" fill="#d4668a" opacity=".82" transform="rotate(180 0 -18)"/>
+    <ellipse cx="0" cy="-38" rx="11" ry="20" fill="#c25070" opacity=".78" transform="rotate(225 0 -18)"/>
+    <ellipse cx="0" cy="-38" rx="11" ry="20" fill="#d4668a" opacity=".82" transform="rotate(270 0 -18)"/>
+    <ellipse cx="0" cy="-38" rx="11" ry="20" fill="#c25070" opacity=".78" transform="rotate(315 0 -18)"/>
+    <ellipse cx="0" cy="-30" rx="9" ry="15" fill="#f06292" opacity=".9" transform="rotate(22.5 0 -18)"/>
+    <ellipse cx="0" cy="-30" rx="9" ry="15" fill="#f06292" opacity=".9" transform="rotate(67.5 0 -18)"/>
+    <ellipse cx="0" cy="-30" rx="9" ry="15" fill="#f06292" opacity=".9" transform="rotate(112.5 0 -18)"/>
+    <ellipse cx="0" cy="-30" rx="9" ry="15" fill="#f06292" opacity=".9" transform="rotate(157.5 0 -18)"/>
+    <ellipse cx="0" cy="-30" rx="9" ry="15" fill="#f06292" opacity=".9" transform="rotate(202.5 0 -18)"/>
+    <ellipse cx="0" cy="-30" rx="9" ry="15" fill="#f06292" opacity=".9" transform="rotate(247.5 0 -18)"/>
+    <ellipse cx="0" cy="-30" rx="9" ry="15" fill="#f06292" opacity=".9" transform="rotate(292.5 0 -18)"/>
+    <ellipse cx="0" cy="-30" rx="9" ry="15" fill="#f06292" opacity=".9" transform="rotate(337.5 0 -18)"/>
+    <circle cx="0" cy="-18" r="11" fill="#880e4f"/>
+    <circle cx="0" cy="-18" r="6"  fill="#c2185b"/>
+    <circle cx="0" cy="-18" r="2.5" fill="#fce4ec"/>
+  </svg>
+
+  <p class="firma">Con todo mi cariño 💖</p>
+  <p class="anio">✦ Feliz Día de la Madre · Mayo 2026 ✦</p>
+</footer>
+
+<script>
+  /* ── PÉTALOS ── */
+  const colors = ['#f5c6d8','#f9a8c0','#fde0ea','#fca8b8','#f8d0dc','#fbeaea'];
+  const sizes  = [14,16,18,12,20];
+  const cont   = document.getElementById('petals');
+  for (let i = 0; i < 22; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    const s = sizes[i % sizes.length];
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      width:${s}px; height:${s*1.3}px;
+      background:${colors[i % colors.length]};
+      animation-duration:${7+Math.random()*9}s;
+      animation-delay:${Math.random()*12}s;
+      transform:rotate(${Math.random()*360}deg);
+      opacity:${0.4+Math.random()*0.4};
+    `;
+    cont.appendChild(p);
+  }
+
+  /* ── REVEAL AL SCROLL ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.card, .frase-item').forEach(el => observer.observe(el));
+
+  /* ── CORAZONES AL CLICK EN CARDS ── */
+  const emojis = ['❤️','💖','🌸','💐','🌷','✨','💕','🎉'];
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => spawnCorazones(card));
+  });
+
+  function spawnCorazones(el) {
+    const rect = el.getBoundingClientRect();
+    for (let i = 0; i < 8; i++) {
+      setTimeout(() => {
+        const h = document.createElement('div');
+        h.className = 'corazon-fly';
+        h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+        h.style.left = (rect.left + Math.random()*rect.width) + 'px';
+        h.style.top  = (rect.top  + rect.height/2) + 'px';
+        h.style.animationDuration = (.8 + Math.random()*.6) + 's';
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 1500);
+      }, i * 70);
+    }
+  }
+</script>
+</body>
+</html>
 
